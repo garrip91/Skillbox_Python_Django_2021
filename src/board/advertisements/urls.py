@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.advertisement_list, name='advertisement_list'),
+    path('about/', views.About.as_view())
 ]
