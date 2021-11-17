@@ -53,7 +53,7 @@ class About(TemplateView):
 class AdvertisementListView(ListView):
 
     model = Advertisement
-    template_name = 'advertisements/advertisements_list.html'
+    template_name = 'advertisements/advertisement_list.html'
     context_object_name = 'advertisement_list'
     queryset = Advertisement.objects.all()[:5]
     
