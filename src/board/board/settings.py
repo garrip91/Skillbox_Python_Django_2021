@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     'advertisements',
     'app_profiles',
+    'app_library',
 ]
 
 MIDDLEWARE = [
