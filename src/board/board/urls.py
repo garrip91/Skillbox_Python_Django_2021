@@ -18,10 +18,14 @@ from django.urls import path, include
 
 from app_profiles.views import UserFormView, UserEditFormView
 
+from app_users.views import MainView
+
 
 urlpatterns = [
+    path('', MainView.as_view(), name='main'),
     path('admin/', admin.site.urls),
     path('advertisements/', include('advertisements.urls')),
     path('profiles/register/', UserFormView.as_view()),
     path('profiles/<int:profile_id>/edit/', UserEditFormView.as_view()),
+    path('users/', include('app_users.urls')),
 ]
