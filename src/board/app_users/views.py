@@ -1,10 +1,10 @@
 from django.shortcuts import render
 
 from app_users.forms import AuthForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.views import View
 
 
@@ -43,3 +43,15 @@ class MainView(View):
 
     def get(self, request):
         return render(request, 'main.html')
+        
+        
+def logout_view(request):
+
+    logout(request)
+    return HttpResponse('Вы успешно вышли из своей учётной записи!')
+    
+    
+class AnotherLogoutView(LogoutView):
+
+    #template_name = 'users/logout.html'
+    next_page = '/'
