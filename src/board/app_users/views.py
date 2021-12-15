@@ -1,11 +1,14 @@
 from django.shortcuts import render
 
-from app_users.forms import AuthForm
+from app_users.forms import AuthForm, ExtendedRegisterForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views import View
+
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import redirect
 
 
 
@@ -34,9 +37,9 @@ def login_view(request):
     return render(request, 'users/login.html', context=context)
     
     
-class AnotherLoginView(LoginView):
+# class AnotherLoginView(LoginView):
 
-    template_name = 'users/login.html'
+    # template_name = 'users/login.html'
     
     
 class MainView(View):
@@ -51,7 +54,39 @@ def logout_view(request):
     return HttpResponse('Вы успешно вышли из своей учётной записи!')
     
     
-class AnotherLogoutView(LogoutView):
+# class AnotherLogoutView(LogoutView):
 
-    #template_name = 'users/logout.html'
-    next_page = '/'
+    # #template_name = 'users/logout.html'
+    # next_page = '/'
+    
+    
+def register_view(request):
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/')
+    else:
+        form = UserCreationForm()
+    return render(request, 'users/register.html', {'form': form})
+    
+    
+def another_register_view(request):
+
+    if request.method == 'POST':
+        form = ExtendedRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/')
+    else:
+        form = ExtendedRegisterForm()
+    return render(request, 'users/register.html', {'form': form})
