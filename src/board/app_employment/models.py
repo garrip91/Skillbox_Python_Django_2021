@@ -16,7 +16,7 @@ class Vacancy(models.Model):
         verbose_name = 'вакансия'
         verbose_name_plural = 'вакансии'
         permissions = (
-            ("can_publish", "Может публиковать"),
+            ('can_publish', 'Может публиковать'),
         )
         
     def __str__(self):
