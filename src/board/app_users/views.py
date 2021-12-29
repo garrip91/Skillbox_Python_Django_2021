@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
-from app_users.forms import AuthForm, RegisterForm
+#from app_users.forms import AuthForm, RegisterForm
+from app_users.forms import ExtendedRegisterForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 
@@ -81,7 +82,8 @@ def register_view(request):
 def another_register_view(request):
     
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
+        #form = RegisterForm(request.POST)
+        form = ExtendedRegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
             date_of_birth = form.cleaned_data.get('date_of_birth')
@@ -97,5 +99,6 @@ def another_register_view(request):
             login(request, user)
             return redirect('/')
     else:
-        form = RegisterForm()
+        #form = RegisterForm()
+        form = ExtendedRegisterForm()
     return render(request, 'users/register.html', {'form': form})
