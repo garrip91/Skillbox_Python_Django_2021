@@ -29,4 +29,5 @@ urlpatterns = [
     path('profiles/<int:profile_id>/edit/', UserEditFormView.as_view()),
     path('users/', include('app_users.urls')),
     path('employment/', include('app_employment.urls')),
+    path('files/', include('app_media.urls')),
 ]
