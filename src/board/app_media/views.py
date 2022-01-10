@@ -1,9 +1,11 @@
 from django.shortcuts import render
 
-from .forms import UploadFileForm, DocumentForm
+from .forms import UploadFileForm, DocumentForm, MultiFileForm
 from django.http import HttpResponse
 
 from django.shortcuts import redirect
+
+from .models import File
 
 
 
@@ -38,3 +40,19 @@ def model_form_upload(request):
     return render(request, 'media/file_form_upload.html', {
         'form': form
     })
+    
+    
+def upload_files(request):
+
+    if request.method == 'POST':
+        form = MultiFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            files = request.FILES.getlist('file_field')
+            for f in files:
+                instance = File(file=f)
+                instance.save()
+            return redirect('/')
+    else:
+        form = MultiFileForm()
+        
+    return render(request, 'media/upload_files.html', {'form': form})

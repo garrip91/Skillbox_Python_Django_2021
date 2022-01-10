@@ -20,6 +20,10 @@ from app_profiles.views import UserFormView, UserEditFormView
 
 from app_users.views import MainView
 
+from django.conf.urls.static import static
+from django.conf import settings
+
+
 
 urlpatterns = [
     path('', MainView.as_view(), name='main'),
@@ -31,4 +35,4 @@ urlpatterns = [
     path('employment/', include('app_employment.urls')),
     path('files/', include('app_media.urls')),
     path('goods/', include('app_goods.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

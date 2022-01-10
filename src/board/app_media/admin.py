@@ -5,4 +5,9 @@ from .models import File
 
 
 # Register your models here:
-admin.site.register(File)
+class FileAdmin(admin.ModelAdmin):
+
+    list_display = ('id', 'created_at',)
+
+
+admin.site.register(File, FileAdmin)
