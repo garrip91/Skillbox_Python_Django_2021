@@ -26,6 +26,7 @@ def update_prices(request):
             csv_reader = reader(price_str, delimiter=',', quotechar='"')
             for row in csv_reader:
                 Item.objects.filter(code=row[0]).update(price=Decimal(row[1]))
+                print(row[0], Item.objects.filter(code=int(row[0]))) ### Я ДОБАВИЛ
             return HttpResponse(content='Цены были успешно обновлены!', status=200)
     else:
         upload_file_form = UploadPriceForm()
