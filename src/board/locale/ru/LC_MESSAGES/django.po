@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 13:23+0300\n"
+"POT-Creation-Date: 2022-01-16 15:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,14 +20,41 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\templates\translation_example.html:10
+#: .\app_goods\apps.py:10 .\app_goods\models.py:14
+msgid "goods"
+msgstr "товары"
+
+#: .\app_goods\models.py:10
+msgid "code"
+msgstr "Код товара"
+
+#: .\app_goods\models.py:11
+msgid "price"
+msgstr "Цена"
+
+#: .\app_goods\models.py:15
+#, fuzzy
+#| msgid "goods"
+msgid "good"
+msgstr "товары"
+
+#: .\app_pages\views.py:17
+#, python-format
+msgid "Hello there! Today is %(date)s %(time)s"
+msgstr "Привет! Сегодня %(date)s %(time)s"
+
+#: .\templates\greetings.html:6
+msgid "What time is it?"
+msgstr "Который час?"
+
+#: .\templates\translation_example.html:6
 msgid "Заголовок нашей страницы перевода"
 msgstr "Наша переведённая страница"
 
-#: .\templates\translation_example.html:13
+#: .\templates\translation_example.html:10
 msgid "Переведённый текст"
 msgstr "Наш переведённый текст"
 
-#: .\templates\translation_example.html:25
+#: .\templates\translation_example.html:22
 msgid "Welcome to our page"
 msgstr "Добро пожаловать на нашу страницу!"
