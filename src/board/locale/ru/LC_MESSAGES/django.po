@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 15:25+0300\n"
+"POT-Creation-Date: 2022-01-16 18:32+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,13 +48,19 @@ msgid "What time is it?"
 msgstr "Который час?"
 
 #: .\templates\translation_example.html:6
-msgid "Заголовок нашей страницы перевода"
-msgstr "Наша переведённая страница"
+msgid "Our translation page title"
+msgstr "Заголовок нашей страницы перевода"
 
 #: .\templates\translation_example.html:10
-msgid "Переведённый текст"
-msgstr "Наш переведённый текст"
+msgid "Translated text"
+msgstr "Переведённый текст"
 
 #: .\templates\translation_example.html:22
 msgid "Welcome to our page"
 msgstr "Добро пожаловать на нашу страницу!"
+
+#~ msgid "Заголовок нашей страницы перевода"
+#~ msgstr "Наша переведённая страница"
+
+#~ msgid "Переведённый текст"
+#~ msgstr "Наш переведённый текст"

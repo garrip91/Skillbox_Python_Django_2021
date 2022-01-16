@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/65002197/how-can-i-use-google-translation-api-in-django-with-python
