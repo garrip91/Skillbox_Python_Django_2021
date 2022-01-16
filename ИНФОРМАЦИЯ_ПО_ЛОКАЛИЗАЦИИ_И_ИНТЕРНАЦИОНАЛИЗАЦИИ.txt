@@ -1,0 +1,8 @@
+Прямая ссылка для скачивания ПО (Windows):
+    https://github.com/mlocati/gettext-iconv-windows/releases/download/v0.21-v1.16/gettext0.21-iconv1.16-static-64.exe
+	
+После установки необходима перезагрузка ПК
+
+Данную программу запускаем по команде "python manage.py makemessages -l ru" ("ru" - это для примера)
+
+После добавления строки (текста) в части кода "msgid" необходимо выполнить команду "python manage.py compilemessages"
