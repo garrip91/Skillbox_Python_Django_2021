@@ -15,6 +15,8 @@ from app_users.models import Profile
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
 
+from django.core.cache import cache
+
 
 
 # Create your views here.
@@ -128,3 +130,36 @@ def restore_password(request):
         'form': restore_password_form
     }
     return render(request, 'users/restore_password.html', context=context)
+    
+    
+def user_account(request):
+
+    username = request.user.username
+    balance = get_balance()
+    
+    promotions_cache_key = 'promotions:{}'.format(username)
+    offers_cache_key = 'offers:{}'.format(username)
+    promotions = get_promotions()
+    offers = get_offers()
+    
+    user_account_cache_data = {
+        promotions_cache_key: promotions,
+        offers_cache_key: offers
+    }
+    cache.set_many(user_account_cache_data)
+    payment_history = get_payment_history()
+    
+    return render(request, 'users/account.html', context={
+        'balance': balance,
+        'promotions': promotions,
+        'offers': offers,
+        'payment_history': payment_history
+    })
+    
+    
+def update_user_account(request):
+
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, request.FILES, instance=request.user)
+        if user_form.is_valid():
+            user_form.save()

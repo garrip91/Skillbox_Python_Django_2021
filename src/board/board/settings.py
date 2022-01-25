@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'app_goods.apps.AppGoodsConfig',
     'app_logic',
     'app_pages',
+    'app_shops',
 ]
 
 MIDDLEWARE = [
@@ -54,8 +55,12 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     
     'django.middleware.locale.LocaleMiddleware', # ДОБАВЛЕНО В РАМКАХ КУРСА
+    #'django.middleware.cache.UpdateCacheMiddleware', # ДОБАВЛЕНО В РАМКАХ КУРСА
     
     'django.middleware.common.CommonMiddleware',
+    
+    #'django.middleware.cache.FetchFromCacheMiddleware', # ДОБАВЛЕНО В РАМКАХ КУРСА
+    
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -81,6 +86,12 @@ TEMPLATES = [
         },
     },
 ]
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
 
 WSGI_APPLICATION = 'board.wsgi.application'
 
