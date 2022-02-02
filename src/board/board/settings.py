@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'app_logic',
     'app_pages',
     'app_shops',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
