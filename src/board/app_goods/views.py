@@ -6,6 +6,11 @@ from csv import reader
 from decimal import Decimal
 from django.http import HttpResponse
 
+from django.http import JsonResponse
+from .entities import Item
+
+from .serializers import ItemSerializer
+
 
 
 # Create your views here:
@@ -36,3 +41,26 @@ def update_prices(request):
         'form': upload_file_form
     }
     return render(request, 'media/upload_file.html', context=context)
+    
+    
+def DRF_items_list(request):
+    
+    if request.method == 'GET':
+        items_for_sale = [
+            Item(
+                name='Кофеварка',
+                description='Варит отличный кофе',
+                weight=100
+            ),
+            Item(
+                name='Беспроводные наушники',
+                description='Отличный звук',
+                weight=150
+            ),
+        ]
+        #return JsonResponse(ItemSerializer(items_for_sale, many=True).data, safe=False)
+        return JsonResponse(ItemSerializer(Item(
+            name='Кофеварка',
+            description='Варит отличный кофе',
+            weight=100
+        )).data, safe=False)
