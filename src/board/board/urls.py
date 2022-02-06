@@ -40,4 +40,5 @@ urlpatterns = [
     path('i18n', include('django.conf.urls.i18n')),
     path('cache_fragments/', include('app_shops.urls')),
     path('api/', include('app_users.DRF_urls')),
+    path('DRF_api/', include('app_goods.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

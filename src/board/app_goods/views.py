@@ -9,7 +9,12 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from .entities import Item
 
-from .serializers import ItemSerializer
+#from .serializers import ItemSerializer
+
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import DRF_Item
+from .serializers import DRF_ItemSerializer
 
 
 
@@ -64,3 +69,19 @@ def DRF_items_list(request):
             description='Варит отличный кофе',
             weight=100
         )).data, safe=False)
+        
+        
+class DRF_ItemList(APIView):
+
+    def get(self, request):
+        items = DRF_Item.objects.all()
+        serializer = DRF_ItemSerializer(items, many=True)
+        return Response(serializer.data)
+        
+    def post(self, request):
+        serializer = DRF_ItemSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
