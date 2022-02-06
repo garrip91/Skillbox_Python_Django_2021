@@ -11,10 +11,14 @@ from .entities import Item
 
 #from .serializers import ItemSerializer
 
-from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from rest_framework import status
+from rest_framework.mixins import ListModelMixin, CreateModelMixin
+from rest_framework.response import Response
 from .models import DRF_Item
 from .serializers import DRF_ItemSerializer
+from rest_framework.generics import GenericAPIView
 
 
 
@@ -71,17 +75,30 @@ def DRF_items_list(request):
         )).data, safe=False)
         
         
-class DRF_ItemList(APIView):
+# class DRF_ItemList(APIView):
+class DRF_ItemList(ListModelMixin, CreateModelMixin, GenericAPIView):
+
+    # queryset = DRF_Item.objects.all()
+    serializer_class = DRF_ItemSerializer
+    
+    def get_queryset(self):
+        queryset = DRF_Item.objects.all()
+        item_name = self.request.query_params.get('name')
+        if item_name:
+            queryset = queryset.filter(name=item_name)
+        return queryset
 
     def get(self, request):
-        items = DRF_Item.objects.all()
-        serializer = DRF_ItemSerializer(items, many=True)
-        return Response(serializer.data)
+        # items = DRF_Item.objects.all()
+        # serializer = DRF_ItemSerializer(items, many=True)
+        # return Response(serializer.data)
+        return self.list(request)
         
-    def post(self, request):
-        serializer = DRF_ItemSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, format=None):
+        # serializer = DRF_ItemSerializer(data=request.data)
+        # if serializer.is_valid():
+            # serializer.save()
+            # return Response(serializer.data, status=status.HTTP_201_CREATED)
+        # else:
+            # return Response(status=status.HTTP_400_BAD_REQUEST)
+        return self.create(request)
