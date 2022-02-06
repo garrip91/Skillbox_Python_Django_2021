@@ -13,3 +13,10 @@ class Item(models.Model):
     class Meta:
         verbose_name_plural = _('goods')
         verbose_name = _('good')
+        
+        
+class DRF_Item(models.Model):
+
+    name = models.CharField(max_length=200, verbose_name='Название')
+    description = models.TextField(blank=True, verbose_name='Описание')
+    weight = models.FloatField(verbose_name='Масса')
