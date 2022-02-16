@@ -25,6 +25,19 @@ from django.conf import settings
 
 
 
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Items API",
+        default_version='v1',
+        description="Описание проекта",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="admin@company.local"),
+        license=openapi.License(name=""),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+
 urlpatterns = [
     path('', MainView.as_view(), name='main'),
     path('admin/doc/', include('django.contrib.admindocs.urls')),

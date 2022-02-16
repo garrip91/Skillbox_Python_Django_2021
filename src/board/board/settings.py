@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'app_shops',
     'rest_framework',
     'django.contrib.admindocs',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
