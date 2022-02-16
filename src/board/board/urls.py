@@ -23,6 +23,11 @@ from app_users.views import MainView
 from django.conf.urls.static import static
 from django.conf import settings
 
+#from rest_framework.schemas import get_schema_view
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from rest_framework import permissions
+
 
 
 schema_view = get_schema_view(
@@ -55,4 +60,5 @@ urlpatterns = [
     path('cache_fragments/', include('app_shops.urls')),
     path('api/', include('app_users.DRF_urls')),
     path('DRF_api/', include('app_goods.urls')),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
