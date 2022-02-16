@@ -14,7 +14,7 @@ from .entities import Item
 from rest_framework.views import APIView
 
 from rest_framework import status
-from rest_framework.mixins import ListModelMixin, CreateModelMixin
+from rest_framework.mixins import ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin
 from rest_framework.response import Response
 from .models import DRF_Item
 from .serializers import DRF_ItemSerializer
@@ -77,6 +77,7 @@ def DRF_items_list(request):
         
 # class DRF_ItemList(APIView):
 class DRF_ItemList(ListModelMixin, CreateModelMixin, GenericAPIView):
+    """Представление для получения списка товаров и создания нового товара"""
 
     # queryset = DRF_Item.objects.all()
     serializer_class = DRF_ItemSerializer
@@ -102,3 +103,19 @@ class DRF_ItemList(ListModelMixin, CreateModelMixin, GenericAPIView):
         # else:
             # return Response(status=status.HTTP_400_BAD_REQUEST)
         return self.create(request)
+        
+        
+class DRF_ItemDetail(UpdateModelMixin, RetrieveModelMixin, DestroyModelMixin, GenericAPIView):
+    """Представление для получения детальной информации о товаре, а также для его редактирования и удаления"""
+
+    queryset = DRF_Item.objects.all()
+    serializer_class = DRF_ItemSerializer
+    
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+        
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+        
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
