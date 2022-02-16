@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'app_pages',
     'app_shops',
     'rest_framework',
+    'django.contrib.admindocs',
 ]
 
 MIDDLEWARE = [

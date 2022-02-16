@@ -16,6 +16,7 @@ class Item(models.Model):
         
         
 class DRF_Item(models.Model):
+    """Модель товара"""
 
     name = models.CharField(max_length=200, verbose_name='Название')
     description = models.TextField(blank=True, verbose_name='Описание')
