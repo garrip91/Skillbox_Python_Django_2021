@@ -1,1 +1,0 @@
-<!DOCTYPE html><html lang="ru">    <head>	    <meta charset="UTF-8">		<title>Регистрация</title>	</head>	<body>	    <h2>Регистрация</h2>		<form method="POST">		    {% csrf_token %}			{{ form.as_p }}			<button type="submit">Sign up</button>		</form>		<a href="{% url 'register' %}">СТРАНИЦА РЕГИСТРАЦИИ</a>	</body></html>
